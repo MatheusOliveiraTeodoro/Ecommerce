@@ -110,7 +110,7 @@ const Navigation = () => {
                                 onMouseLeave={() => setIsSubMenuOpen(false)}
                                 className="relative"
                             >
-                                <Link to="/"><Button>Loja</Button></Link>
+                                <Link to="/Loja"><Button>Loja</Button></Link>
                                 <div className={`submenu shadow absolute top-full left-0 w-60 h-auto bg-[#fff] z-50 border-l border-black/10 pt-5 transition-all ease-in-out 
                                 ${isSubMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                                     <Link to="/"><Button>Petiscos</Button></Link>

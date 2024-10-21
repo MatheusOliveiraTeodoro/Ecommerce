@@ -1,15 +1,20 @@
-import FormSignUp from "./pages/Forms/FormSignUp"
-import FormSignIn from "./pages/Forms/FormSignIn"
-import FormForgotPass from "./pages/Forms/FormForgotPass"
-import Home from "./pages/Home/Home"
-import Header from "./components/Header/Header"
-import {BrowserRouter, Route, Router, Routes} from "react-router-dom"
-import { createContext, useState } from "react"
+import FormSignUp from "./pages/Forms/FormSignUp";
+import FormSignIn from "./pages/Forms/FormSignIn";
+import FormForgotPass from "./pages/Forms/FormForgotPass";
+import Home from "./pages/Home/Home";
+import Header from "./components/Header/Header";
+import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
+import { createContext, useState } from "react";
+import Footer from "./components/Footer/footer";
+import ProductModal from "./components/ProdutcItem/ProductModal";
+import Loja from "./pages/Loja/loja"
+
 
 const MyContext = createContext();
 
 function App() {
 
+  const [isOpenProductModal,setisOpenProductModal] = useState(false);
   const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
   const [isLogin, setisLogin] = useState(false);
 
@@ -17,6 +22,8 @@ function App() {
   const values={
     setisHeaderFooterShow,
     isHeaderFooterShow,
+    setisOpenProductModal,
+    isOpenProductModal
   }
 
   return (
@@ -30,7 +37,15 @@ function App() {
           <Route exact={true} path="/FormSignUp" element={<FormSignUp />} />
           <Route exact={true} path="/FormSignIn" element={<FormSignIn />} />
           <Route exact={true} path="/FormForgotPass" element={<FormForgotPass />} />
+          <Route exact={true} path="/Loja" element={<Loja />} />
         </Routes>
+        {
+          isHeaderFooterShow === true &&  <Footer/>
+        }
+        
+        {
+          isOpenProductModal ===true && <ProductModal  />
+        }
 
       </MyContext.Provider>
     </BrowserRouter>  

@@ -23,6 +23,14 @@ body {
   color: #fff !important;
   text-transform: capitalize !important;
 }
+.btn-sml {
+  font-size: 12px !important;
+  color: #000;
+  text-transform: capitalize !important;
+}
+.btn-sml svg {
+  font-size: 20px;
+}
 .btn-blue {
   background: #233a95 !important;
   color: #fff !important;
@@ -296,4 +304,129 @@ nav .navPart2 ul li a button:hover {
 }
 .close_ svg {
   font-size: 22px;
+}
+.productRow2 .productItem {
+  width: 24%;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+.inscreverbtn {
+  position: absolute;
+  top: -37px;
+  right: -355px;
+  background: #233a95 !important;
+  font-size: 14px !important;
+  padding: 12px 25px !important;
+  color: #fff !important;
+  text-transform: capitalize !important;
+  font-weight: 600 !important;
+  height: 130%;
+}
+.cupombtn {
+  padding: 5px 25px !important;
+  border: 1.5px dashed rgba(0, 0, 0, 0.7) !important;
+  border-radius: 30px !important;
+  color: #414141 !important;
+  font-weight: 600;
+  background: transparent;
+  text-transform: capitalize !important;
+  margin-right: 5px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%) !important;
+}
+.scroll::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.gif-banner {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.range-slider .range-slider__thumb,
+.range-slider__range {
+  background: #000 !important;
+}
+.range-slider .range-slider__thumb {
+  width: 15px !important;
+  height: 15px !important;
+}
+.range-slider {
+  height: 5px !important;
+}
+.css-20bmp1-MuiSvgIcon-root {
+  width: 20px !important;
+  height: 20px !important;
+}
+.MuiFormControlLabel-root {
+  padding: 2px !important;
+}
+.css-1edfpdg-MuiTypography-root {
+  font-size: 13px !important;
+}
+.btnWrapper button {
+  min-width: 35px !important;
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 50% !important;
+  color: #000;
+}
+.btnWrapper button svg {
+  color: #000;
+  font-size: 18px !important;
+  opacity: 0.3;
+  transition: all 0.2s;
+}
+.btnWrapper button.act svg {
+  opacity: 1 !important;
+}
+.btnWrapper button:hover svg {
+  opacity: 1;
+  scale: 1.1;
+}
+.showByFilter button {
+  min-width: auto !important;
+  color: #000;
+}
+.showByFilter button svg {
+  color: #000;
+  opacity: 0.6;
+  margin-left: 5px;
+}
+.showByFilter button.act svg {
+  opacity: 1 !important;
+}
+.showPerPageDropdown .MuiPaper-root {
+  width: 80px !important;
+}
+.productModal .MuiPaper-elevation {
+  padding: 25px;
+  position: relative;
+  max-width: 900px !important;
+  width: 900px;
+}
+.productModal .btModal button {
+  color: #000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  font-size: 10px !important;
+  margin-left: 10px;
+  text-transform: capitalize !important;
+}
+.productModal .actions button svg {
+  font-size: 15px !important;
+}
+.quantityDrop button {
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: #edeef5 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #000;
 }

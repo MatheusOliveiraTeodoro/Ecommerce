@@ -19,10 +19,11 @@ const QuantityBox = () => {
         }
 
     return(
-        <div className="flex items-center">
-            <Button onClick={minus}><FaMinus /></Button>
-                <input type="text" value={inputVal} />
-            <Button onClick={plus}> <FaPlus /></Button>
+        <div className="flex items-center w-40 gap-3 quantityDrop">
+            <Button onClick={minus}><FaMinus className="text-[#000]" /></Button>
+                <input type="text" value={inputVal} className="w-8 bg-transparent 
+                outline-none text-center" />
+            <Button onClick={plus}> <FaPlus className="text-[#000]" /></Button>
         </div>
     )
 }
