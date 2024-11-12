@@ -119,9 +119,9 @@ const Navigation = () => {
                                 </div>
                             </li>
 
-                            <li><Link to="/"><Button>Contato</Button></Link></li>
+                            <li><Link to="/Contato"><Button>Contato</Button></Link></li>
                             <li><Link to="/"><Button>Blog</Button></Link></li>
-                            <li><Link to="/"><Button>FAQ</Button></Link></li>
+                            <li><Link to="/FAQ"><Button>FAQ</Button></Link></li>
                             <li><Link to="/"><Button>Seja um parceiro</Button></Link></li>
                         </ul>
                     </div>

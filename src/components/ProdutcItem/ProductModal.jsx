@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { MyContext } from '../../App';
+import { ModalContext } from '../../App';
 import { IoCloseCircle } from 'react-icons/io5';
 import { Rating } from '@mui/material';
 import { IoMdHeart } from 'react-icons/io';
@@ -9,14 +9,14 @@ import QuantityBox from "./QuantityBox";
 import { Button } from "@mui/material";
 
 const ProductModal = (props) => {
-    const context = useContext(MyContext);
+    const context = useContext(ModalContext);
 
     return (
         <>
             <div className={`fixed inset-0 z-50 productModal ${context.isOpenProductModal ? 'flex' : 'hidden'} items-center justify-center bg-black bg-opacity-50`}>
                 <div className="bg-white rounded-lg p-4 w-11/12 md:w-9/12 lg:w-8/12 max-h-[90vh] overflow-y-auto">
                     <div className="flex justify-between items-center mb-4">
-                        <h4 className="font-bold text-xl text-black/80">Bovino Adulto 200g</h4>
+                        <h4 className="font-bold text-xl text-black/80">Bovino Adulto</h4>
                         <Button className="close_" onClick={() => context.setisOpenProductModal(false)}>
                             <IoCloseCircle size={24} />
                         </Button>

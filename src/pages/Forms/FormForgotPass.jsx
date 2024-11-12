@@ -1,18 +1,14 @@
 import TextField from "@mui/material/TextField";
 import Logo_BFP from '../../../public/Logo_BFP.png'
-import Google from '../../../public/google.webp'
 import Button from '@mui/material/Button';
-import { TiCancelOutline } from "react-icons/ti";
 import { useContext, useEffect, useState } from "react";
-import { FaEyeSlash } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { MyContext } from "../../App";
+import { ModalContext } from "../../App";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 const FormForgotPass = () =>{
 
-    const context = useContext(MyContext);
+    const context = useContext(ModalContext);
 
     useEffect(()=>{
         context.setisHeaderFooterShow(false);

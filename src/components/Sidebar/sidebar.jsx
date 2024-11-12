@@ -4,14 +4,14 @@ import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import gif1 from '../../assets/gif1.gif';
+import gif2 from '../../assets/gif2.gif';
+import natal from '../../assets/gif_natal.gif'
 
-const Sidebar = () => {
-    // Inicializando o valor do filtro com o mínimo e máximo
+const Sidebar = ({ onFilterChange }) => {
     const [value, setValue] = useState([10, 170]);
 
     return (
-        <div className='w-1/5 flex-none basis-1/4'>
+        <div className='w-1/5 flex-none basis-1/4 max-h-96'>
             <div className='sticky top-1/4'>
                 <div className='mb-9'>
                     <h6 className='font-bold text-sm mb-4'>CATEGORIA DE PRODUTOS</h6>
@@ -76,7 +76,9 @@ const Sidebar = () => {
                     </div>
                 </div>
 
-                <Link to="#"><img src={gif1} className='w-full gif-banner' alt="" /></Link>
+                <Link to="#"><img src={gif2} className='w-full gif-banner' alt="" /></Link>
+                <Link to="#"><img src={natal} className='w-full gif-banner mt-10' alt="" /></Link>
+
             </div>
         </div>
     );

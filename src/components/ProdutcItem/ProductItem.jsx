@@ -2,17 +2,19 @@ import Rating from '@mui/material/Rating';
 import { SlSizeFullscreen } from "react-icons/sl";
 import Button from '@mui/material/Button';
 import { FaCartShopping } from "react-icons/fa6";
-import { useContext, useState } from 'react';
-import { MyContext } from '../../App';
+import { useContext, useState } from 'react';   
 import ProductModal from './ProductModal';
 import teste from "../../assets/muffin.png";
+import { MyContext } from '../Context/mycontext';
+import { ModalContext } from '../../App';
 
 const ProductItem = ({ product }) => {
     const context = useContext(MyContext);
+    const contextmd = useContext(ModalContext);
     const [isOpenProductModal, setisOpenProductModal] = useState(false);
 
     const viewProductDetails = () => {
-        context.setisOpenProductModal(true);
+        contextmd.setisOpenProductModal(true);
     };
 
     const closeProductModal = () => {
@@ -28,11 +30,21 @@ const ProductItem = ({ product }) => {
     const precoSemDescontoNum = preco_sem_desconto ? parseFloat(preco_sem_desconto) : 0;
     const precoRealVendaNum = parseFloat(preco_real_venda);
 
+    const addToCart = () => {
+        context.addToCart(product);
+    };
+
     return (
         <>
             <div className="w-full h-auto border border-black/10 cursor-pointer relative rounded-sm mx-auto transition-all ease-in-out">
                 <div className="overflow-hidden relative group">
                     <img src={teste} alt={nome} className="w-100 transition ease-in-out hover:opacity-100" />
+
+                    {product.bestsaler && (
+                        <span className="absolute top-2 left-2 z-50 bg-yellow-500 text-white font-semibold text-xs px-2 py-1 rounded-full">
+                            Best-seller
+                        </span>
+                    )}
 
                     {desconto && precoSemDescontoNum > 0 && (
                         <span className="inline-block pt-1 px-2 pb-1 absolute top-2 left-2 z-50 bg-[#2bbef9] rounded-3xl text-[#fff] font-semibold text-xs align-baseline text-center whitespace-nowrap leading-none">
@@ -42,7 +54,7 @@ const ProductItem = ({ product }) => {
 
                     <div className="actions absolute top-5 right-3 flex flex-col gap-2 transition-all ease-in-out opacity-0 group-hover:opacity-100 transform group-hover:translate-x-0 translate-x-3">
                         <Button onClick={viewProductDetails}><SlSizeFullscreen className='text-black' /></Button>
-                        <Button><FaCartShopping className='text-black' /></Button>
+                        <Button onClick={addToCart}><FaCartShopping className='text-black' /></Button>
                     </div>
                 </div>
 

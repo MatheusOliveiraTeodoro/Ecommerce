@@ -4,7 +4,7 @@ import HomeCat from "../../components/Carrousels/HomeCat";
 import { BsArrowRightShort } from "react-icons/bs";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductItem from "../../components/ProdutcItem/ProductItem";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import 'swiper/css'
 import 'swiper/css/navigation';
 import {  Navigation } from 'swiper/modules'
@@ -15,9 +15,40 @@ import HomeBanner from "../../components/Carrousels/HomeBanner";
 import banner1 from "../../assets/banner3.png";
 import banner2 from "../../assets/banne4.png";
 import cupom from '../../assets/cupom.png'
-
+import axios from "axios";
 
 const home = () =>{
+    const [novosProdutos, setNovosProdutos] = useState([]);
+    const [bestsalers, setBestsalers] = useState([]);
+
+    useEffect(() => {
+        // Carregar todos os produtos
+        const fetchProducts = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/produto', {
+              params: { orderByDate: 'desc' }  // Para obter produtos ordenados pela data
+            });
+            setNovosProdutos(response.data);
+          } catch (error) {
+            console.error("Erro ao buscar produtos:", error);
+          }
+        };
+        
+        // Carregar produtos mais vendidos
+        const fetchBestsalers = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/produto', {
+              params: { bestsaler: 'true' }  // Filtrando apenas produtos "mais vendidos"
+            });
+            setBestsalers(response.data);
+          } catch (error) {
+            console.error("Erro ao buscar produtos mais vendidos:", error);
+          }
+        };
+    
+        fetchProducts();
+        fetchBestsalers();
+      }, []);
     
     return(
         <>
@@ -50,7 +81,7 @@ const home = () =>{
                 </div>
 
                 <div className="w-full mt-1 -ml-3 -mr-3">
-                    <Swiper
+                    <Swiper 
                         slidesPerView={4}
                         spaceBetween={0}
                         pagination={{
@@ -59,12 +90,17 @@ const home = () =>{
                         modules={[Navigation]}
                         className="mySwiper pr-20"
                     >
-                        <SwiperSlide><ProductItem /></SwiperSlide>
-                        <SwiperSlide><ProductItem /></SwiperSlide>
-                        <SwiperSlide><ProductItem /></SwiperSlide>
-                        <SwiperSlide><ProductItem /></SwiperSlide>
-                        <SwiperSlide><ProductItem /></SwiperSlide>
                     </Swiper>
+                </div>
+
+                <div className="w-full mt-1 grid grid-cols-4 gap-4">
+                    {bestsalers && bestsalers.length > 0 ? (
+                    bestsalers.slice(0, 8).map((product) => (
+                        <ProductItem key={product.id} product={product} className="flex flex-col" />
+                    ))
+                    ) : (
+                    <div>Carregando produtos mais vendidos...</div>
+                    )}
                 </div>
 
                 <div className="flex bg-[#ffe0e0] mt-3 items-center justify-center">
@@ -85,14 +121,16 @@ const home = () =>{
                 </div>
 
                 <div className="w-full mt-1 grid grid-cols-4 gap-4">
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
-                    <ProductItem className="flex flex-col" />
+                    {novosProdutos && novosProdutos.length > 0 ? (
+                    novosProdutos.slice(0,8).map((product) => (
+                        
+                        <ProductItem key={product.id} product={product} className="flex flex-col">
+
+                        </ProductItem>
+                    ))
+                    ) : (
+                    <div>Carregando novos produtos...</div>
+                    )}
                 </div>
 
                 <div className="flex mt-1 mb-2 gap-4">

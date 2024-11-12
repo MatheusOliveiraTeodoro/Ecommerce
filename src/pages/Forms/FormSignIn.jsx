@@ -5,13 +5,36 @@ import Button from '@mui/material/Button';
 import { TiCancelOutline } from "react-icons/ti";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { MyContext } from "../../App";
+import { ModalContext } from "../../App";
+import { useAuth } from "../../components/Context/useAuth";
+import axios from "axios";
 
 const FormSignIn = () => {
+
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
+
+    const context = useContext(ModalContext);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const senha = e.target.senha.value;
     
-    const context = useContext(MyContext);
+        try {
+            const response = await axios.post('http://localhost:3000/usuarios/login', { email, senha });
+            console.log('Usuário logado:', response.data);
+            
+            login(response.data); 
+            alert('Login realizado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            alert('Erro ao fazer login. Tente novamente.');
+        }
+    };
 
     useEffect(()=>{
         context.setisHeaderFooterShow(false);
@@ -23,16 +46,7 @@ const FormSignIn = () => {
         setShowPassword(!showPassword);
     };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!termsAccepted) {
-      return;
-    }
-    console.log('Formulário enviado com sucesso!');
-  };
-
   return (
-
 
     <div className="min-h-screen w-full flex flex-col items-center justify-center
       bg-gradient-to-r from-red-600 to-red-400">
@@ -57,7 +71,7 @@ const FormSignIn = () => {
         <h1 className="font-medium text-[1.5rem] text-black">Entrar</h1>
    
             <div className="mb-6 h-12 rounded-lg pl-5">
-                <TextField className="w-full" label="Email" type="text" required variant="standard"></TextField>
+                <TextField className="w-full" label="Email" name="email" type="text" required variant="standard"></TextField>
             </div>
 
             <div className="mb-6 h-12 rounded-lg pl-5 flex items-center">
@@ -92,7 +106,7 @@ const FormSignIn = () => {
                         <div className="row-span-2 grid">
                             <div className="col-start-1 col-end-3">
                                 <Button type="submit" className="btn-red btn-big w-48 h-10" 
-                                variant="contained">Registrar</Button>
+                                variant="contained">Entrar</Button>
                             </div>
                             <div className="col-end-7 col-span-2 ml-10">
                                 <Link to="/"><Button variant="outlined"

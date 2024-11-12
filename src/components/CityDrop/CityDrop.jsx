@@ -1,9 +1,10 @@
     import React, { useState } from 'react'; 
     import { FaAngleDown } from "react-icons/fa6";
     import { Button, Dialog } from "@mui/material";
-    import { IoIosSearch } from "react-icons/io";
     import { IoIosCloseCircle } from "react-icons/io";
     import Slide from '@mui/material/Slide';
+    import { MyContext } from '../Context/mycontext';
+    import { useContext } from 'react';
 
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
@@ -14,6 +15,7 @@
         const [abortController, setAbortController] = useState(null);
         const [entregas, setEntregas] = useState([]);
         const [searchTerm, setSearchTerm] = useState('');
+        const { setDeliveryPrice, setDeliveryCity } = useContext(MyContext);
 
         const fetchEntregas = async () => {
             const controller = new AbortController();
@@ -46,6 +48,13 @@
         const filteredEntregas = entregas.filter(entrega => 
             normalizeString(entrega.nome).includes(normalizeString(searchTerm))
         );
+
+        const handleCitySelect = (entrega) => {
+            setDeliveryPrice(entrega.preco); 
+            setDeliveryCity(entrega.nome); 
+            console.log(`Cidade selecionada: ${entrega.nome}, Preço de entrega: ${entrega.preco}`);
+            handleCloseModal(); 
+        };
 
         return (
             <div className="sm:col-span-10">
@@ -87,7 +96,7 @@
                     <ul className="mb-0 cityList max-h-96 overflow-x-hidden overflow-y-scroll mt-1">
                         {filteredEntregas.map((entrega) => (
                             <li key={entrega.id} className="w-full list-none">
-                                <Button onClick={handleCloseModal}>
+                                <Button onClick={() => handleCitySelect(entrega)}>
                                     <div className="flex flex-col">
                                         <span className="text-sm capitalize flex text-sky-600 font-bold">{entrega.nome}</span>
                                         <span className="text-xs text-black/40">Preço: R${entrega.preco}, Dias: {entrega.dias_entrega}</span>

@@ -7,17 +7,22 @@ import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
 import { createContext, useState } from "react";
 import Footer from "./components/Footer/footer";
 import ProductModal from "./components/ProdutcItem/ProductModal";
-import Loja from "./pages/Loja/loja"
+import Loja from "./pages/Loja/loja";
+import Contato from "./pages/Contato/contato";
+import FAQ from "./pages/Faq/faq";
+import Cart from "./pages/Cart/cart";
+import Pagamento from "./pages/Payment/payment";
+import ProductDetail from "./pages/ProductDetail/productDetail";
+import { AuthProvider } from "./components/Context/useAuth";
+import { MyProvider } from "./components/Context/mycontext";
 
 
-const MyContext = createContext();
+const ModalContext = createContext();
 
 function App() {
 
   const [isOpenProductModal,setisOpenProductModal] = useState(false);
   const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
-  const [isLogin, setisLogin] = useState(false);
-
   
   const values={
     setisHeaderFooterShow,
@@ -27,8 +32,10 @@ function App() {
   }
 
   return (
+    <MyProvider>
+    <AuthProvider>
     <BrowserRouter> 
-    <MyContext.Provider value={values}>
+    <ModalContext.Provider value={values}>
       {
         isHeaderFooterShow === true &&  <Header />
       }
@@ -38,6 +45,11 @@ function App() {
           <Route exact={true} path="/FormSignIn" element={<FormSignIn />} />
           <Route exact={true} path="/FormForgotPass" element={<FormForgotPass />} />
           <Route exact={true} path="/Loja" element={<Loja />} />
+          <Route exact={true} path="/Contato" element={<Contato />} />
+          <Route exact={true} path="/FAQ" element={<FAQ />} />
+          <Route exact={true} path="/Cart" element={<Cart />} />
+          <Route exact={true} path="/ProductDetail" element={<ProductDetail />} />
+          <Route exact={true} path="/Pagamento" element={<Pagamento />} />
         </Routes>
         {
           isHeaderFooterShow === true &&  <Footer/>
@@ -47,10 +59,12 @@ function App() {
           isOpenProductModal ===true && <ProductModal  />
         }
 
-      </MyContext.Provider>
+      </ModalContext.Provider>
     </BrowserRouter>  
+    </AuthProvider>
+    </MyProvider>
   )
 }
 
 export default App
-export {MyContext};
+export {ModalContext};

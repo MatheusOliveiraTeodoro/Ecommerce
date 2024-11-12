@@ -430,3 +430,33 @@ nav .navPart2 ul li a button:hover {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   color: #000;
 }
+.roundedbutton {
+  background-color: #be4aea;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+.roundedbutton:hover {
+  background-color: #be4aea;
+}
+
+.btn-pagamentos {
+  background-color: blue;
+  text-color: white;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+}
+.confirmar-btn button {
+  background-color: #6397fa;
+  color: white;
+  border: none;
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+}
