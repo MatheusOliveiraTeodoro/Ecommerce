@@ -64,10 +64,10 @@ const Loja = () => {
                         <div className="mt-3 mb-3 flex items-center w-full h-auto bg-[#e4e5ea] pt-4 px-6">
                             <div className="flex items-center btnWrapper">
                                 <Button className={productView === 'one' ? 'act' : ''} onClick={() => setProductView('one')}>
-                                    <IoIosMenu />
+                                    <IoIosMenu  />
                                 </Button>
                                 <Button className={productView === 'three' ? 'act' : ''} onClick={() => setProductView('three')}>
-                                    <HiViewGrid />
+                                    <HiViewGrid  />
                                 </Button>
                                 <Button className={productView === 'four' ? 'act' : ''} onClick={() => setProductView('four')}>
                                     <CgMenuGridR />

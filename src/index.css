@@ -460,3 +460,9 @@ nav .navPart2 ul li a button:hover {
   font-size: 16px;
   border: 1px solid black;
 }
+.showByFilter button {
+  margin-bottom: 10px;
+}
+.btnWrapper button {
+  margin-bottom: 10px;
+}

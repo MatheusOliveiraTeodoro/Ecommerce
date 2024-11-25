@@ -163,7 +163,7 @@ const Pagamento = () => {
                             Data de Expiração
                         </label>
                         <div className="flex items-center space-x-4 w-2/3">
-                            <div className="relative">
+                            <div className="relative"> 
                                 <Button className="absolute right-2 top-2">
                                     <IoTriangleSharp className="cursor-pointer text-black rotate-180" /><Calendario /> 
                                 </Button>
